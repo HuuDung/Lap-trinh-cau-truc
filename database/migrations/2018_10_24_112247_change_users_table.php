@@ -17,7 +17,11 @@ class ChangeUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->integer('status');
             $table->integer('level');
-            $table->integer('order');
+            $table->integer('order')->nullable();
+            $table->date('birthday')->nullable();
+            $table->integer('gender');
+            $table->integer('admin');
+            $table->string('location')->nullable();
         });
     }
 
@@ -28,11 +32,6 @@ class ChangeUsersTable extends Migration
      */
     public function down()
     {
-        //
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('status');
-            $table->dropColumn('level');
-            $table->dropColumn('order');
-        });
+
     }
 }
