@@ -31,18 +31,18 @@
                     <td>{{ $user->email }}</td>
                     <td class="text-center">
                         @if($user->level == \App\User::NORMAL)
-                            <span class=" btn btn-success">Normal</span>
+                            <span class=" btn btn-success btn-width">Normal</span>
                         @elseif($user->level == \App\User::GOLD)
-                            <span class="btn btn-warning">Gold</span>
+                            <span class="btn btn-warning btn-width">Gold</span>
                         @elseif($user->level == \App\User::DIAMOND)
-                            <span class="btn btn-primary">Diamond</span>
+                            <span class="btn btn-primary btn-width">Diamond</span>
                         @endif
                     </td>
                     <td class="text-center">
                         @if($user->status == \App\User::ACTIVED)
-                            <span class=" btn btn-success">Actived</span>
+                            <span class=" btn btn-success btn-width">Actived</span>
                         @elseif($user->status == \App\User::BLOCKED)
-                            <span class="btn btn-danger">Blocked</span>
+                            <span class="btn btn-danger btn-width">Blocked</span>
                         @endif
                     </td>
                     <td class="text-center">{{ $user->order }}</td>

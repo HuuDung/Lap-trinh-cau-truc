@@ -33,7 +33,6 @@ class ChangeUsersTable extends Migration
             $table->dropColumn('status');
             $table->dropColumn('level');
             $table->dropColumn('order');
-
         });
     }
 }
