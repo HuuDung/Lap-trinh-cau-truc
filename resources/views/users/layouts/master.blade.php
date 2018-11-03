@@ -1,4 +1,4 @@
-@include('admin.layouts.header')
+@include('users.layouts.header')
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
     @extends('modules.nav-left')
@@ -7,12 +7,12 @@
             <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-            <p>Alexander Pierce</p>
-            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            <p>{{ Auth::user()->name }}</p>
+            {{--<a href="#"><i class="fa fa-circle text-success"></i> Online</a>--}}
         </div>
     @endsection
     @section('menu')
-        <li class="active"><a href="{{ route('admin.list.member') }}"><i class="fa fa-circle-o"></i> List Member</a>
+        <li class="active"><a href="#"><i class="fa fa-circle-o"></i> List Member</a>
         </li>
     @endsection
     @include('modules.nav-right')
@@ -221,4 +221,4 @@
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div>
-@include('admin.layouts.footer')
+@include('users.layouts.footer')

@@ -22,5 +22,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'status' => rand(0, 1),
         'level' => rand(0, 2),
         'order' => rand(0, 1000),
+        'admin' => rand(0,1),
+        'gender' => rand(0,1),
     ];
 });
