@@ -9,7 +9,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+    const ACTIVED = 1;
+    const BLOCKED = 0;
 
+    const NORMAL = 0;
+    const GOLD = 1;
+    const DIAMOND = 2;
     /**
      * The attributes that are mass assignable.
      *
