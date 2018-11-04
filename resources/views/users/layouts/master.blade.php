@@ -222,3 +222,4 @@
     <div class="control-sidebar-bg"></div>
 </div>
 @include('users.layouts.footer')
+@yield('script')
