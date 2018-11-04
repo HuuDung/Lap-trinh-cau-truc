@@ -22,6 +22,7 @@ class ChangeUsersTable extends Migration
             $table->integer('gender');
             $table->integer('admin');
             $table->string('location')->nullable();
+            $table->string('notes')->nullable();
         });
     }
 
