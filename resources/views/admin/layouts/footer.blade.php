@@ -6,8 +6,6 @@
 <script>
   $.widget.bridge('uibutton', $.ui.button);
 </script>
-
-<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <!-- Morris.js charts -->
@@ -37,8 +35,5 @@
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
-<!-- FastClick -->
-<script src="{{ asset('bower_components/fastclick/lib/fastclick.js') }}"></script>
-<script src="{{ asset('dist/js/pages/dashboard2.js') }}"></script>
 </body>
 </html>
