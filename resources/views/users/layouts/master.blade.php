@@ -11,10 +11,8 @@
             {{--<a href="#"><i class="fa fa-circle text-success"></i> Online</a>--}}
         </div>
     @endsection
-    @section('menu')
-        <li class="active"><a href="#"><i class="fa fa-circle-o"></i> List Member</a>
-        </li>
-    @endsection
+   
+    
     @include('modules.nav-right')
     <div class="content-wrapper">
         @yield('content')
