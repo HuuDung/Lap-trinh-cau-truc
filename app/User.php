@@ -50,7 +50,7 @@ class User extends Authenticatable
         if (!$this->attributes['created_at']) {
             return null;
         }
-        return Carbon::parse($this->attributes['created_at'])->format('m/d/Y');
+        return Carbon::parse($this->attributes['created_at'])->format('F Y');
     }
 
     public function getDeletedAtAttribute()

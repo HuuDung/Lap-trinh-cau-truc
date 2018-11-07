@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Image;
 
 class UserController extends Controller
 {
@@ -18,6 +19,7 @@ class UserController extends Controller
         $user = User::findOrFail(Auth::id());
         $data = [
             'user' => $user,
+            'title' => "Profile",
         ];
         return view('users.index', $data);
     }
@@ -34,6 +36,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $data = [
             'user' => $user,
+            'title' => "Edit Profile",
         ];
         return view('users.edit', $data);
     }

@@ -1,4 +1,4 @@
-@extends('users.layouts.master')
+@extends('layouts.master')
 @section('content')
     <section class="content-header">
         <h1>
