@@ -52,14 +52,26 @@ class UserController extends Controller
     {
         //
         $user = User::findOrFail($id);
-        $user->gender = $request->gender;
-        $user->name = $request->name;
-        $user->location = $request->location;
-        $user->birthday = $request->birthday;
-        $user->notes = $request->notes;
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            Image::make($avatar)->resize(150, 150)->save(public_path('/storage/user/' . $user->id . '.' .
+                $avatar->getClientOriginalExtension()));
+            $avatarUrl = 'storage/user/' . $user->id . '.' . $avatar->getClientOriginalExtension();
+            $user->update([
+                'avatar' => $avatarUrl,
+            ]);
+        } else {
+            $user->update([
+                'gender' => $request->gender,
+                'name' => $request->location,
+                'location' => $request->birthday,
+                'notes' => $request->notes,
+            ]);
+        }
         $user->save();
         $data = [
             'user' => $user,
+            'title' => "Profile"
         ];
         return view('users.index', $data);
     }

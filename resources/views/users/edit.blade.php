@@ -12,7 +12,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <form action="{{ route('user.update', $user->id) }}" method="POST">
+        <form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input name="_method" type="hidden" value="PATCH">
             <div class="row">
@@ -22,10 +22,12 @@
                         <div class="box-body box-profile">
                             <div class="form-group">
                                 <img class="profile-user-img img-responsive img-circle"
-                                     src="../../dist/img/user4-128x128.jpg"
+                                     src="{{ asset($user->avatar) }}"
                                      alt="User profile picture">
                             </div>
-
+                            <div class="form-group text-center">
+                                <input type="file" name="avatar" class="form-control col-3">
+                            </div>
                             <div class="form-group">
                                 <input class="col-9 form-control text-right" type="text" name="name"
                                        value="{{ $user->name }}"
