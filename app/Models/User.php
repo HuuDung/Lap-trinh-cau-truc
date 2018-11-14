@@ -31,7 +31,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'status', 'order', 'level', 'birthday'
+        'name', 'email', 'password', 'status', 'order', 'level', 'birthday', 'gender', 'location', 'notes', 'avatar',
     ];
     protected $dates = [
         'created_at', 'updated_at', 'deleted_at', 'birthday'
@@ -78,6 +78,7 @@ class User extends Authenticatable
     {
         return $this->gender == self::MALE;
     }
+
     public function isFermale()
     {
         return $this->gender == self::FERMALE;
