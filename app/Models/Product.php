@@ -13,6 +13,6 @@ class Product extends Model
         'category_id', 'description', 'image', 'cost', 'quantity'
     ];
     protected $dates = [
-        'created_at', 'updated_at', 'deleted_at'
+        'created_at', 'updated_at', 'deleted_at',
     ];
 }
