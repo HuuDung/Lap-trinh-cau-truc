@@ -16,6 +16,7 @@
             {{ csrf_field() }}
             <input name="_method" type="hidden" value="PATCH">
             <div class="row">
+                <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <!-- Profile Image -->
                     <div class="box box-primary">
@@ -29,10 +30,11 @@
                                 <input type="file" name="avatar" class="form-control col-3">
                             </div>
                             <div class="form-group">
-                                <input class="col-9 form-control text-right" type="text" name="name"
+                                <input class="form-control text-right" type="text" name="name"
                                        value="{{ $user->name }}"
                                        placeholder="Name">
                             </div>
+
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
                                     <b>Emails</b> <a class="pull-right">{{ Auth::user()->email }}</a>
@@ -49,26 +51,6 @@
                                     <b>Orders</b> <a class="pull-right">{{ Auth::user()->order }}</a>
                                 </li>
                             </ul>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-success"><b>Update</b></button>
-                                <a href="{{ route('user.index') }}"
-                                   class="btn btn-primary "><b>Back</b></a>
-                            </div>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
-
-                    <!-- About Me Box -->
-                    <!-- /.box -->
-                </div>
-                <div class="col-md-6">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">About Me</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
                             <div class="form-group">
                                 <label for="gender">Gender:</label>
                                 <select name="gender" id="" class="form-control">
@@ -84,17 +66,18 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label><i class="fa fa-calendar margin-r-5"></i>Birthday:</label>
+                                <label for="bỉthday"><i class="fa fa-calendar margin-r-5"></i>Birthday:</label>
                                 <div class="input-group date">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" class="form-control pull-right" name="birthday" id="datepicker">
+                                    <input type="text" class="form-control pull-right" name="birthday" id="datepicker"
+                                           value="{{ old('birthday',$user->birthday) }}">
                                 </div>
                                 <!-- /.input group -->
                             </div>
                             <div class="form-group">
-                                <label><i class="fa fa-map-marker margin-r-5"></i>Location:</label>
+                                <label for="location"><i class="fa fa-map-marker margin-r-5"></i>Location:</label>
                                 <input type="text" class="form-control pull-right" name="location"
                                        value="{{ $user->location }}"
                                        placeholder="Location">
@@ -113,11 +96,18 @@
                                        placeholder="Notes">
                                 <!-- /.input group -->
                             </div>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
+                            <div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success">Update</button>
+                                    <a href="{{ route('user.index') }}"
+                                       class="btn btn-primary ">Back</a>
+                                </div>
+                            </div>
 
+                        </div>
+                    </div>
                 </div>
+                <div class="col-md-3"></div>
             </div>
             <!-- /.row -->
         </form>
@@ -127,7 +117,7 @@
 @section('script')
     <script type="text/javascript">
       $(function () {
-        $('#datetimepicker').datetimepicker();
+
       });
     </script>
 @endsection
