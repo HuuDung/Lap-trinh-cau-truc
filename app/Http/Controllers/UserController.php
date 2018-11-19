@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Image;
@@ -60,14 +61,14 @@ class UserController extends Controller
             $user->update([
                 'avatar' => $avatarUrl,
             ]);
-        } else {
-            $user->update([
-                'gender' => $request->gender,
-                'name' => $request->location,
-                'location' => $request->birthday,
-                'notes' => $request->notes,
-            ]);
         }
+        $user->update([
+            'gender' => $request->gender,
+            'name' => $request->name,
+            'location' => $request->location,
+            'notes' => $request->notes,
+            'birthday' => $request->birthday,
+        ]);
         $user->save();
         $data = [
             'user' => $user,

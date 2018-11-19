@@ -15,12 +15,12 @@ class ChangeUsersTable extends Migration
     {
         //
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('status');
-            $table->integer('level');
-            $table->integer('order')->nullable();
+            $table->integer('status')->default(\App\User::ACTIVED);
+            $table->integer('level')->default(\App\User::NORMAL);
+            $table->integer('order')->default(0);
             $table->date('birthday')->nullable();
             $table->integer('gender');
-            $table->integer('admin');
+            $table->integer('admin')->default(\App\User::NOT_ADMIN);
             $table->string('location')->nullable();
             $table->string('notes')->nullable();
         });

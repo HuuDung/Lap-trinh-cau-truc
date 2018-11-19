@@ -21,6 +21,7 @@ class User extends Authenticatable
     const DIAMOND = 2;
 
     const ADMIN = 1;
+    const NOT_ADMIN = 0;
 
     const MALE = 0;
     const FERMALE = 1;
@@ -58,15 +59,20 @@ class User extends Authenticatable
         if (!$this->attributes['deleted_at']) {
             return null;
         }
-        return Carbon::parse($this->attributes['deleted_at'])->format('m/d/Y');
+        return Carbon::parse($this->attributes['deleted_at'])->format('d/m/Y');
     }
 
     public function getBirthdayAttribute()
     {
-        if (!$this->attributes['updated_at']) {
+        if (!$this->attributes['birthday']) {
             return null;
         }
-        return Carbon::parse($this->attributes['updated_at'])->format('m/d/Y');
+        return Carbon::parse($this->attributes['birthday'])->format('d/m/Y');
+    }
+
+    public function setBirthdayAttribute($value)
+    {
+        $this->attributes['birthday'] = Carbon::createFromFormat('d/m/Y', $value);
     }
 
     public function isAdmin()
