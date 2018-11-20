@@ -12,94 +12,47 @@
 
     <!-- Main content -->
     <section class="content">
-        <form action="{{ route('admin.product-administration.store', $user->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.product-administration.store') }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <!-- Profile Image -->
+                    <!-- Product Image -->
                     <div class="box box-primary">
                         <div class="box-body box-profile">
-                            <div class="form-group">
-                                <img class="profile-user-img img-responsive img-circle"
-                                     src="{{ asset($user->avatar) }}"
-                                     alt="User profile picture">
-                            </div>
                             <div class="form-group text-center">
-                                <input type="file" name="avatar" class="form-control col-3">
+                                <input type="file" name="image" class="form-control col-3">
                             </div>
                             <div class="form-group">
-                                <input class="form-control text-right" type="text" name="name"
-                                       value="{{ $user->name }}"
+                                <label for="name">Product's name</label>
+                                <input class="form-control text-left" type="text" name="name"
                                        placeholder="Name">
                             </div>
-
-                            <ul class="list-group list-group-unbordered">
-                                <li class="list-group-item">
-                                    <b>Emails</b> <a class="pull-right">{{ Auth::user()->email }}</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Rank</b> <a class="pull-right">
-                                        @if(Auth::user()->level == \App\User::NORMAL) {{ "Normal" }}
-                                        @elseif(Auth::user()->level == \App\User::GOLD) {{ "GOLD" }}
-                                        @elseif (Auth::user()->level == \App\User::DIAMOND) {{ "DIAMOND" }}
-                                        @endif
-                                    </a>
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Orders</b> <a class="pull-right">{{ Auth::user()->order }}</a>
-                                </li>
-                            </ul>
                             <div class="form-group">
-                                <label for="gender">Gender:</label>
-                                <select name="gender" id="" class="form-control">
-                                    <option value="{{ \App\User::MALE }}"
-                                            @if($user->gender == \App\User::MALE) selected @endif>Male
-                                    </option>
-                                    <option value="{{ \App\User::FERMALE }}"
-                                            @if($user->gender == \App\User::FERMALE) selected @endif>Fermale
-                                    </option>
-                                    <option value="{{ \App\User::ORTHER }}"
-                                            @if($user->gender == \App\User::ORTHER) selected @endif>Orther
-                                    </option>
+                                <label for="category">Category</label>
+                                <select name="category" class="form-control ">
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="bỉthday"><i class="fa fa-calendar margin-r-5"></i>Birthday:</label>
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <input type="text" class="form-control pull-right" name="birthday" id="datepicker"
-                                           value="{{ old('birthday',$user->birthday) }}">
+                                <label for="gender">Cost:</label>
+                                <input type="text" class="form-control text-left" name="cost">
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <label for="description"><i
+                                                class="fa fa-map-marker margin-r-5"></i>Description:</label>
+
                                 </div>
-                                <!-- /.input group -->
-                            </div>
-                            <div class="form-group">
-                                <label for="location"><i class="fa fa-map-marker margin-r-5"></i>Location:</label>
-                                <input type="text" class="form-control pull-right" name="location"
-                                       value="{{ $user->location }}"
-                                       placeholder="Location">
-                                <!-- /.input group -->
-                            </div>
-                            <div>
-                                <strong><i class="fa fa-pencil margin-r-5"></i> Favorite</strong>
-                                <p>
-                                    <span class="label label-danger">{{ "Electronic" }}</span>
-                                </p>
-                            </div>
-                            <div class="form-group">
-                                <label><i class="fa fa-file-text-o margin-r-5"></i>Notes:</label>
-                                <input type="text" class="form-control pull-right" name="notes"
-                                       value="{{ $user->notes }}"
-                                       placeholder="Notes">
+                                <textarea name="description" cols="83" rows="10"></textarea>
+
                                 <!-- /.input group -->
                             </div>
                             <div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success">Update</button>
-                                    <a href="{{ route('user.index') }}"
-                                       class="btn btn-primary ">Back</a>
+                                    <button type="submit" class="btn btn-success">Create</button>
                                 </div>
                             </div>
 
