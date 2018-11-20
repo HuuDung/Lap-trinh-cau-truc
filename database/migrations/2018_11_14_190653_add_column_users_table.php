@@ -14,9 +14,8 @@ class AddColumnUsersTable extends Migration
     public function up()
     {
         //
-        Schema::table('users', function (Blueprint $table)
-        {
-           $table->string('avatar')->default('/storage/user/default3.jpg');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('avatar')->default('/storage/user/default3.jpg');
         });
     }
 

@@ -15,13 +15,13 @@ class ProductAdministrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function index()
+    public function index()
     {
         $product = Product::paginate(5);
         $data = [
 
-            'products' => $product,
-            'title' => "Product Administration"
+           'products' => $product,
+           'title' => "Product Administration"
         ];
         return view('admin.product-administration.index', $data);
     }
