@@ -15,7 +15,6 @@ class ChangeUsersTable extends Migration
     {
         //
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('status')->default(\App\User::ACTIVED);
             $table->integer('level')->default(\App\User::NORMAL);
             $table->integer('order')->default(0);
             $table->date('birthday')->nullable();
