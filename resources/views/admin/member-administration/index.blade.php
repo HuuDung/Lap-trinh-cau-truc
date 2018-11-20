@@ -17,17 +17,21 @@
         <table class="table table-bordered">
             <thead>
             <tr>
+                <th class="text-center">ID</th>
                 <th>Name</th>
+                <th>Avatar</th>
                 <th>Email</th>
                 <th class="text-center">Level</th>
-                <th class="text-center">Status</th>
                 <th>Orders</th>
+                <th></th>
             </tr>
             </thead>
             <body>
             @foreach($users as $user)
                 <tr>
-                    <td><a href="#">{{ $user->name }}</a></td>
+                    <td class="text-center">{{ $user->id }}</td>
+                    <td><a href="{{ route('admin.member.show' , $user->id) }}">{{ $user->name }}</a></td>
+                    <td><img src="{{ asset($user->avatar) }}" alt=""></td>
                     <td>{{ $user->email }}</td>
                     <td class="text-center">
                         @if($user->level == \App\User::NORMAL)
@@ -38,14 +42,12 @@
                             <span class="btn btn-primary btn-width">Diamond</span>
                         @endif
                     </td>
-                    <td class="text-center">
-                        @if($user->status == \App\User::ACTIVED)
-                            <span class=" btn btn-success btn-width">Actived</span>
-                        @elseif($user->status == \App\User::BLOCKED)
-                            <span class="btn btn-danger btn-width">Blocked</span>
-                        @endif
-                    </td>
                     <td class="text-center">{{ $user->order }}</td>
+                    <td class="text-center">
+                        {{Form::open(['method' => 'DELETE', 'route' => ['admin.member.destroy', $user->id]]) }}
+                        {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                        {{ Form::close() }}
+                    </td>
                 </tr>
             @endforeach
             </body>

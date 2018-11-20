@@ -8,5 +8,6 @@ $factory->define(\App\Product::class, function (Faker $faker) {
         'name' => $faker->name(),
         'description' => "Some description",
         'cost' => rand(10, 200),
+        'quantity' => rand(10,200),
     ];
 });

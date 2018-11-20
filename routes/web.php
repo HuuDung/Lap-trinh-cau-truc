@@ -20,7 +20,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.',
     'middleware' => ['auth', 'admin']], function () {
-        Route::resource('member', 'MemberAdministrationController');
-        Route::resource('product-administration', 'ProductAdministrationController');
-    });
+    Route::resource('member', 'MemberAdministrationController');
+    Route::get('search-member', 'MemberAdministrationController@search')->name('member.search');
+    Route::resource('product-administration', 'ProductAdministrationController');
+    Route::get('search-product', 'ProductAdministrationController@search')->name('product.search');
+});
 Route::resource('user', 'UserController')->only('index', 'edit', 'update')->middleware('auth');
+Route::get('home/search-product', 'HomeController@search')->name('home.product.search');
+
+

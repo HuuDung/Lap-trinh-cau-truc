@@ -18,10 +18,12 @@ class ProductAdministrationController extends Controller
     public function index()
     {
         $product = Product::paginate(5);
+        $categories = Category::all();
         $data = [
 
-           'products' => $product,
-           'title' => "Product Administration"
+            'products' => $product,
+            'categories' => $categories,
+            'title' => "Product Administration"
         ];
         return view('admin.product-administration.index', $data);
     }
@@ -39,7 +41,7 @@ class ProductAdministrationController extends Controller
             'title' => "Create Product",
             'categories' => $categories,
         ];
-        return view('admin.product-administration.product-create', $data);
+        return view('admin.product-administration.create', $data);
     }
 
     /**
@@ -52,7 +54,6 @@ class ProductAdministrationController extends Controller
     {
         //
         $id = Product::withTrashed()->count() + 1;
-        dd($id);
         $product = new Product();
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -60,7 +61,7 @@ class ProductAdministrationController extends Controller
                 $image->getClientOriginalExtension()));
             $imageUrl = 'storage/product/' . $id . '.' . $image->getClientOriginalExtension();
             $product->fill([
-               'image' => $imageUrl,
+                'image' => $imageUrl,
             ]);
         }
         $product->fill([
@@ -68,6 +69,7 @@ class ProductAdministrationController extends Controller
             'cost' => $request->cost,
             'category_id' => $request->category,
             'description' => $request->description,
+            'quantity' => $request->quantity,
         ]);
         $product->save();
         return redirect()->route('admin.product-administration.index');
@@ -83,9 +85,9 @@ class ProductAdministrationController extends Controller
     {
         //
         $product = Product::findOrFail($id);
-        $data=[
-          'title' => "Show product",
-          'product' => $product
+        $data = [
+            'title' => "Show product",
+            'product' => $product
         ];
         return view('admin.product-administration.show', $data);
     }
@@ -99,7 +101,14 @@ class ProductAdministrationController extends Controller
     public function edit($id)
     {
         //
-        dd(0);
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+        $data = [
+            'product' => $product,
+            'categories' => $categories,
+            'title' => "Edit Product",
+        ];
+        return view('admin.product-administration.edit', $data);
     }
 
     /**
@@ -112,6 +121,25 @@ class ProductAdministrationController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $product = Product::findOrFail($id);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            Image::make($image)->resize(150, 150)->save(public_path('/storage/product/' . $id . '.' .
+                $image->getClientOriginalExtension()));
+            $imageUrl = 'storage/product/' . $id . '.' . $image->getClientOriginalExtension();
+            $product->update([
+                'image' => $imageUrl,
+            ]);
+        }
+        $product->update([
+            'name' => $request->name,
+            'cost' => $request->cost,
+            'category_id' => $request->category,
+            'description' => $request->description,
+            'quantity' => $request->quantity,
+        ]);
+        $product->save();
+        return redirect()->route('admin.product-administration.show', $product->id);
     }
 
     /**
@@ -126,5 +154,34 @@ class ProductAdministrationController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
         return redirect()->route('admin.product-administration.index');
+    }
+
+    public function search(Request $request)
+    {
+        $categories = Category::all();
+        if ($request->has('category')) {
+            $products = Product::where('category_id', $request->category)
+                ->where('name', 'like', '%' . $request->content . '%')
+                ->paginate(5);
+        } else {
+            $products = Product::where('name', 'like', '%' . $request->content . '%')
+                ->paginate(5);
+        }
+        if ($products->count() == 0) {
+            $data = [
+                'products' => $products,
+                'status' => false,
+                'title' => "Result",
+                'categories' => $categories,
+            ];
+        } else {
+            $data = [
+                'products' => $products,
+                'status' => true,
+                'title' => "Result",
+                'categories' => $categories,
+            ];
+        }
+        return view('admin.product-administration.result', $data);
     }
 }

@@ -22,7 +22,9 @@ class CreateProductsTable extends Migration
             $table->string('description')->nullable();
             $table->integer('cost');
             $table->string('image')->default('/storage/product/default.jpg');
-            $table->integer('quantity')->default(0);
+            $table->integer('quantity');
+            $table->integer('sold')->default(0);
+
             $table->softDeletes();
             $table->timestamps();
         });

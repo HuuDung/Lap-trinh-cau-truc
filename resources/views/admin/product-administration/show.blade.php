@@ -2,11 +2,11 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Create Product
+            Show Product
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
-            <li class="active">Create Product</li>
+            <li class="active">Show Product</li>
         </ol>
     </section>
 
@@ -28,11 +28,16 @@
                         </div>
                         <div class="form-group">
                             <label for="category">Category</label>
-                            <input type="text" class="form-control" value="{{ $product->category->name }}" readonly>
+                            <input type="text" class="form-control" name="category" value="{{ $product->category->name }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="gender">Cost:</label>
-                            <input type="text" class="form-control text-left" name="cost" value="{{ $product->cost }}"
+                            <label for="cost">Cost:</label>
+                            <input type="number" class="form-control text-left" name="cost" value="{{ $product->cost }}"
+                                   readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" class="form-control text-left" name="quantity" value="{{ $product->quantity }}"
                                    readonly>
                         </div>
                         <div class="form-group">

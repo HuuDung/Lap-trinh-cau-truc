@@ -13,9 +13,6 @@ class User extends Authenticatable
     use Notifiable;
     use SoftDeletes;
 
-    const ACTIVED = 1;
-    const BLOCKED = 0;
-
     const NORMAL = 0;
     const GOLD = 1;
     const DIAMOND = 2;
@@ -32,10 +29,24 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'status', 'order', 'level', 'birthday', 'gender', 'location', 'notes', 'avatar',
+        'name',
+        'email',
+        'password',
+        'status',
+        'order',
+        'level',
+        'birthday',
+        'gender',
+        'location',
+        'notes',
+        'avatar',
+        'admin',
     ];
     protected $dates = [
-        'created_at', 'updated_at', 'deleted_at', 'birthday'
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'birthday',
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -70,6 +81,11 @@ class User extends Authenticatable
         return Carbon::parse($this->attributes['birthday'])->format('d/m/Y');
     }
 
+    public function setBirthdayAttribute($value)
+    {
+        $this->attributes['birthday'] = Carbon::parse($value);
+    }
+
     public function isAdmin()
     {
         return $this->admin == self::ADMIN;
@@ -91,5 +107,10 @@ class User extends Authenticatable
             return null;
         }
         return Carbon::parse($this->attributes['birthday'])->age;
+    }
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
     }
 }

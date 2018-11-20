@@ -26,7 +26,7 @@
                             <div class="form-group">
                                 <label for="name">Product's name</label>
                                 <input class="form-control text-left" type="text" name="name"
-                                       placeholder="Name">
+                                       placeholder="Name" required>
                             </div>
                             <div class="form-group">
                                 <label for="category">Category</label>
@@ -37,8 +37,12 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="gender">Cost:</label>
-                                <input type="text" class="form-control text-left" name="cost">
+                                <label for="cosr">Cost:</label>
+                                <input type="number" class="form-control text-left" name="cost" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" class="form-control text-left" name="quantity" required>
                             </div>
                             <div class="form-group">
                                 <div>
