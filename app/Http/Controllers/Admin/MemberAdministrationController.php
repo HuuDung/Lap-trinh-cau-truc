@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MemberAdministrationController extends Controller
 {
-    public function listMember()
+    public function index()
     {
         $users = User::paginate(5);
         $data = [

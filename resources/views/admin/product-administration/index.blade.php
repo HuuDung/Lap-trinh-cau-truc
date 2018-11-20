@@ -18,24 +18,36 @@
             <thead>
             <tr>
                 <th>ID</th>
+                <th>Name</th>
+                <th>Category</th>
                 <th>Description</th>
                 <th>Image</th>
                 <th class="text-center">Cost</th>
+                <th></th>
             </tr>
             </thead>
             <body>
             @foreach($products as $product)
                 <tr>
-                    <td><a href="#">{{ $product->id }}</a></td>
-                    <td>{{ $product->description }}</td>
-                    <td>{{ $product->image }}</td>
+                    <td>{{ $product->id }}</td>
+                    <td>
+                        <a href="{{ route('admin.product-administration.show', $product->id) }}">{{ $product->name }}</a>
+                    </td>
+                    <td>{{ $product->category->name }}</td>
+                    <td>{{ nl2br($product->description) }}</td>
+                    <td><img src="{{ asset($product->image) }}" alt=""></td>
                     <td class="text-center">{{ $product->cost }}</td>
+                    <td class="text-center">
+                        {{Form::open(['method' => 'DELETE', 'route' => ['admin.product-administration.destroy', $product->id]]) }}
+                        {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                        {{ Form::close() }}
+                    </td>
                 </tr>
             @endforeach
             </body>
         </table>
         <div class="text-right">
-          {{ $products->links() }}
+            {{ $products->links() }}
         </div>
     </section>
     <!-- /.content -->

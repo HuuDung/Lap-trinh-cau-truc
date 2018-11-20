@@ -62,12 +62,16 @@ class UserController extends Controller
                 'avatar' => $avatarUrl,
             ]);
         }
+        if ($request->has('birthday')) {
+            $user->update([
+                'birthday' => $request->birthday,
+            ]);
+        }
         $user->update([
             'gender' => $request->gender,
             'name' => $request->name,
             'location' => $request->location,
             'notes' => $request->notes,
-            'birthday' => $request->birthday,
         ]);
         $user->save();
         $data = [
