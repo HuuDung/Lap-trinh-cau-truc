@@ -23,7 +23,7 @@
                     </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ route('admin.list.member') }}"><i class="fa fa-circle-o"></i>
+                        <li><a href="{{ route('admin.member.index') }}"><i class="fa fa-circle-o"></i>
                                 List Member</a>
                         </li>
                         <li><a href="{{ route('admin.product-administration.index') }}"><i class="fa fa-circle-o"></i>

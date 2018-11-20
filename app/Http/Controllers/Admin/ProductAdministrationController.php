@@ -19,6 +19,7 @@ class ProductAdministrationController extends Controller
     {
         $product = Product::paginate(5);
         $data = [
+
             'products' => $product,
             'title' => "Product Administration"
         ];
@@ -51,6 +52,7 @@ class ProductAdministrationController extends Controller
     {
         //
         $id = Product::withTrashed()->count() + 1;
+        dd($id);
         $product = new Product();
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -68,7 +70,7 @@ class ProductAdministrationController extends Controller
             'description' => $request->description,
         ]);
         $product->save();
-        dd(1);
+        return redirect()->route('admin.product-administration.index');
     }
 
     /**
@@ -80,6 +82,12 @@ class ProductAdministrationController extends Controller
     public function show($id)
     {
         //
+        $product = Product::findOrFail($id);
+        $data=[
+          'title' => "Show product",
+          'product' => $product
+        ];
+        return view('admin.product-administration.show', $data);
     }
 
     /**
@@ -91,6 +99,7 @@ class ProductAdministrationController extends Controller
     public function edit($id)
     {
         //
+        dd(0);
     }
 
     /**
@@ -114,5 +123,8 @@ class ProductAdministrationController extends Controller
     public function destroy($id)
     {
         //
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return redirect()->route('admin.product-administration.index');
     }
 }
