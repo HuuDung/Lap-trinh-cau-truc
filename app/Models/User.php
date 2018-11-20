@@ -70,11 +70,6 @@ class User extends Authenticatable
         return Carbon::parse($this->attributes['birthday'])->format('d/m/Y');
     }
 
-    public function setBirthdayAttribute($value)
-    {
-        $this->attributes['birthday'] = Carbon::createFromFormat('d/m/Y', $value);
-    }
-
     public function isAdmin()
     {
         return $this->admin == self::ADMIN;

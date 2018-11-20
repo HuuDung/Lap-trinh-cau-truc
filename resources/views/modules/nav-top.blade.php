@@ -2,9 +2,9 @@
     <!-- Logo -->
     <a href="{{ route('home') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>S</b>KM</span>
+        <span class="logo-mini"><b>K</b>M</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Shop</b>Kingman</span>
+        <span class="logo-lg"><b>King</b>man</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
