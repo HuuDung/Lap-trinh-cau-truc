@@ -26,6 +26,9 @@
                         <li><a href="{{ route('admin.list.member') }}"><i class="fa fa-circle-o"></i>
                                 List Member</a>
                         </li>
+                        <li><a href="{{ route('admin.list.product') }}"><i class="fa fa-circle-o"></i>
+                                List Product</a>
+                        </li>
                     </ul>
                 </li>
             @endif
