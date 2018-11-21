@@ -17,6 +17,6 @@ docker-compose up -d
 
 ### Member
 Duong Van Ba  - 20150230<br/>
-Dang Huu Dung - 20150682<br/>
+Huu Dung - 20150682<br/>
 Doan Van Son  - 20153185<br/>
 
