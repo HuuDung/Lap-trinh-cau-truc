@@ -31,7 +31,7 @@
                 <tr>
                     <td class="text-center">{{ $user->id }}</td>
                     <td><a href="{{ route('admin.member.show' , $user->id) }}">{{ $user->name }}</a></td>
-                    <td><img src="{{ asset($user->avatar) }}" alt=""></td>
+                    <td><img src="{{ Storage::url($user->avatar) }}" alt=""></td>
                     <td>{{ $user->email }}</td>
                     <td class="text-center">
                         @if($user->level == \App\User::NORMAL)

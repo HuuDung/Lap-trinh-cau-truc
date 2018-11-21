@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('category_id');
             $table->string('description')->nullable();
             $table->integer('cost');
-            $table->string('image')->default('/storage/product/default.jpg');
+            $table->string('image')->default('product/default.jpg');
             $table->integer('quantity');
             $table->integer('sold')->default(0);
 

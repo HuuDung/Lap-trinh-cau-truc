@@ -19,7 +19,7 @@
                 <div class="box box-primary">
                     <div class="box-body box-profile">
                         <div class="form-group text-center">
-                            <img src="{{ asset($product->image) }}" alt="Product image">
+                            <img src="{{ Storage::url($product->image) }}" alt="Product image">
                         </div>
                         <div class="form-group">
                             <label for="name">Product's name</label>

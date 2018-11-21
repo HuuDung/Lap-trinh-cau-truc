@@ -61,7 +61,7 @@ class ProductAdministrationController extends Controller
             $image = $request->file('image');
             Image::make($image)->resize(150, 150)->save(public_path('/storage/product/' . $id . '.' .
                 $image->getClientOriginalExtension()));
-            $imageUrl = 'storage/product/' . $id . '.' . $image->getClientOriginalExtension();
+            $imageUrl = 'product/' . $id . '.' . $image->getClientOriginalExtension();
             $product->fill([
                 'image' => $imageUrl,
             ]);
@@ -128,7 +128,7 @@ class ProductAdministrationController extends Controller
             $image = $request->file('image');
             Image::make($image)->resize(150, 150)->save(public_path('/storage/product/' . $id . '.' .
                 $image->getClientOriginalExtension()));
-            $imageUrl = 'storage/product/' . $id . '.' . $image->getClientOriginalExtension();
+            $imageUrl = 'product/' . $id . '.' . $image->getClientOriginalExtension();
             $product->update([
                 'image' => $imageUrl,
             ]);
