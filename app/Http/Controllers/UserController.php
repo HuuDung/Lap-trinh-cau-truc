@@ -63,7 +63,7 @@ class UserController extends Controller
                 'avatar' => $avatarUrl,
             ]);
         }
-        if ($request->has('birthday')) {
+        if ($request->birthday != null) {
             $user->update([
                 'birthday' => $request->birthday,
             ]);

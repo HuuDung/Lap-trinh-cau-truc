@@ -72,7 +72,7 @@
                                         <i class="fa fa-calendar"></i>
                                     </div>
                                     <input type="text" class="form-control pull-right" name="birthday" id="datepicker"
-                                           value="{{ old('birthday',$user->birthday) }}">
+                                           value="{{ $user->birthday }}">
                                 </div>
                                 <!-- /.input group -->
                             </div>

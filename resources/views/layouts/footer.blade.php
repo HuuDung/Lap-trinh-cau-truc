@@ -28,7 +28,7 @@
     });
     //Date picker
     $('#datepicker').datepicker({
-      format: 'dd/mm/yyyy',
+      format: 'd-m-yyyy',
       autoclose : true,
     });
   });

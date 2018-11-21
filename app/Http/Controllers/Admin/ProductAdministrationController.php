@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use App\Product;
+use function foo\func;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
 use Image;
 
 class ProductAdministrationController extends Controller
@@ -159,7 +161,7 @@ class ProductAdministrationController extends Controller
     public function search(Request $request)
     {
         $categories = Category::all();
-        if ($request->has('category')) {
+        if ($request->category != null) {
             $products = Product::where('category_id', $request->category)
                 ->where('name', 'like', '%' . $request->content . '%')
                 ->paginate(5);
