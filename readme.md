@@ -8,6 +8,7 @@ Simple ecomerce system by Laravel
 
 ### Setup
 ```bash
+composer install
 cd docker
 docker-compose up -d
 ```
