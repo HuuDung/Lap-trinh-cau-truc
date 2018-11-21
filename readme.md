@@ -13,7 +13,7 @@ docker-compose up -d
 ```
 
 ### Demo 
-[https://structure-of-programs-project.herokuapp.com    ]
+[https://structure-of-programs-project.herokuapp.com]
 
 ### Member
 Duong Van Ba  - 20150230<br/>
