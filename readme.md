@@ -1,18 +1,19 @@
-<p align="center"><img src="https://www.northampton.ac.uk/wp-content/uploads/2015/10/Hanoi-University-of-Science-and-Technology-logo-200x300.png" width="100px"></p>
-
-## Hanoi university of science and technology
-## Hedspi K60
-
 <p align="center">
+    <img src="https://www.northampton.ac.uk/wp-content/uploads/2015/10/Hanoi-University-of-Science-and-Technology-logo-200x300.png" width="100px">
+    <b>Hanoi university of science and technology<br/>Hedspi K60</b>
+</p>
 
 # Structs of programing projects
-
 Simple ecomerce system by Laravel
 
+# Setup
+```bash
+cd docker
+docker-compose up -d
+```
 
 ## Member
-Duong Van Ba  - 20150230
-Dang Huu Dung - 20150682
-Doan Van Son  - 20153185
+Duong Van Ba  - 20150230<br/>
+Dang Huu Dung - 20150682<br/>
+Doan Van Son  - 20153185<br/>
 
-</p>
