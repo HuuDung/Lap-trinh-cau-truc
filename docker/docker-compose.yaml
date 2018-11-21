@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+
+
+  php: 
+    build: ./php
+    volumes: 
+      - ..:/var/www
+      - ./configs/apache2.conf:/etc/apache2/apache2.conf
+      - ./configs/app.conf:/etc/apache2/sites-enabled/app.conf
+      - ./configs/php.ini:/etc/php/7.2/apache2/conf.d/custom.ini
+    env_file:
+      - .env
+    ports: 
+      - 9000:80
+
+  
