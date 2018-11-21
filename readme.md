@@ -14,7 +14,7 @@ docker-compose up -d
 ```
 
 ### Demo 
-[https://structure-of-programs-project.herokuapp.com]
+[Heroku deloy](https://structure-of-programs-project.herokuapp.com)
 
 ### Member
 Duong Van Ba  - 20150230<br/>
