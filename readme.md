@@ -6,13 +6,16 @@
 # Structs of programing projects
 Simple ecomerce system by Laravel
 
-# Setup
+### Setup
 ```bash
 cd docker
 docker-compose up -d
 ```
 
-## Member
+### Demo 
+[https://structure-of-programs-project.herokuapp.com    ]
+
+### Member
 Duong Van Ba  - 20150230<br/>
 Dang Huu Dung - 20150682<br/>
 Doan Van Son  - 20153185<br/>
