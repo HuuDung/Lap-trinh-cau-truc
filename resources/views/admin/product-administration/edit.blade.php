@@ -23,7 +23,7 @@
                     <div class="box box-primary">
                         <div class="box-body box-profile">
                             <div class="form-group text-center">
-                                <img src="{{ asset($product->image) }}" alt="Product image">
+                                <img src="{{ Storage::url($product->image) }}" alt="Product image">
                             </div>
                             <div class="form-group">
                                 <input type="file" name="image" class="form-control">

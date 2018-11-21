@@ -58,7 +58,7 @@ class UserController extends Controller
             $avatar = $request->file('avatar');
             Image::make($avatar)->resize(150, 150)->save(public_path('/storage/user/' . $user->id . '.' .
                 $avatar->getClientOriginalExtension()));
-            $avatarUrl = 'storage/user/' . $user->id . '.' . $avatar->getClientOriginalExtension();
+            $avatarUrl = 'user/' . $user->id . '.' . $avatar->getClientOriginalExtension();
             $user->update([
                 'avatar' => $avatarUrl,
             ]);

@@ -20,7 +20,7 @@
                     <div class="box-body box-profile">
                         <div class="form-group">
                             <img class="profile-user-img img-responsive img-circle"
-                                 src="{{ asset($user->avatar) }}"
+                                 src="{{ Storage::url($user->avatar) }}"
                                  alt="User profile picture">
                         </div>
                         <div class="form-group">
