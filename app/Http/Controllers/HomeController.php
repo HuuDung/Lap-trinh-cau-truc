@@ -27,18 +27,19 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::paginate(5);
-        $categories =Category::all();
-        $data =[
-            'products'=>$products,
+        $categories = Category::all();
+        $data = [
+            'products' => $products,
             'categories' => $categories,
             'title' => "Home",
         ];
         return view('home', $data);
     }
+
     public function search(Request $request)
     {
-        $categories =Category::all();
-        if ($request->has('category')) {
+        $categories = Category::all();
+        if ($request->category != null) {
             $products = Product::where('category_id', $request->category)
                 ->where('name', 'like', '%' . $request->content . '%')
                 ->paginate(5);
@@ -61,6 +62,6 @@ class HomeController extends Controller
                 'categories' => $categories,
             ];
         }
-        return view('home',$data);
+        return view('home', $data);
     }
 }
