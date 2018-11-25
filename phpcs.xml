@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="Laravel Standards">
-    <description>PSR-2 for Laravel Project at Haposoft</description>
+    <description>PSR-2 for Laravel Project</description>
     <file>./app</file>
     <file>./database</file>
     <file>./routes</file>
