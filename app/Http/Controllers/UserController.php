@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Image;
 
 class UserController extends Controller
@@ -18,6 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
+
         $user = User::findOrFail(Auth::id());
         $data = [
             'user' => $user,
@@ -55,12 +57,12 @@ class UserController extends Controller
         //
         $user = User::findOrFail($id);
         if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
-            Image::make($avatar)->resize(150, 150)->save(public_path('/storage/user/' . $user->id . '.' .
-                $avatar->getClientOriginalExtension()));
-            $avatarUrl = 'user/' . $user->id . '.' . $avatar->getClientOriginalExtension();
+            $path = $request->file('avatar')->store(
+                'users/avatars/' . $user->id,
+                's3'
+            );
             $user->update([
-                'avatar' => $avatarUrl,
+                'avatar' => $path,
             ]);
         }
         if ($request->birthday != null) {

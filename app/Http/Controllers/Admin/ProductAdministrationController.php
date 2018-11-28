@@ -58,12 +58,12 @@ class ProductAdministrationController extends Controller
         $id = Product::withTrashed()->count() + 1;
         $product = new Product();
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            Image::make($image)->resize(150, 150)->save(public_path('/storage/product/' . $id . '.' .
-                $image->getClientOriginalExtension()));
-            $imageUrl = 'product/' . $id . '.' . $image->getClientOriginalExtension();
+            $path = $request->file('image')->store(
+                'products/images/' . $id,
+                's3'
+            );
             $product->fill([
-                'image' => $imageUrl,
+                'image' => $path,
             ]);
         }
         $product->fill([
@@ -125,12 +125,12 @@ class ProductAdministrationController extends Controller
         //
         $product = Product::findOrFail($id);
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            Image::make($image)->resize(150, 150)->save(public_path('/storage/product/' . $id . '.' .
-                $image->getClientOriginalExtension()));
-            $imageUrl = 'product/' . $id . '.' . $image->getClientOriginalExtension();
+            $path = $request->file('image')->store(
+                'products/images/' . $product->id,
+                's3'
+            );
             $product->update([
-                'image' => $imageUrl,
+                'image' => $path,
             ]);
         }
         $product->update([
