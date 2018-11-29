@@ -57,12 +57,14 @@ class UserController extends Controller
         //
         $user = User::findOrFail($id);
         if ($request->hasFile('avatar')) {
-            $path = $request->file('avatar')->store(
-                'users/avatars/' . $user->id,
-                's3'
-            );
+            $filename =$request->file('avatar')->getClientOriginalName();
+            $type = $request->file('avatar')->getClientOriginalExtension();
+            $url = 'users/avatars/'. $user->id .'/'. $filename;
+
+            $image = Image::make($request->file('avatar'))->resize(150, 150)->encode($type);
+            Storage::disk('s3')->put ($url, (string)$image,'public');
             $user->update([
-                'avatar' => $path,
+                'avatar' => $url,
             ]);
         }
         if ($request->birthday != null) {
@@ -77,10 +79,6 @@ class UserController extends Controller
             'notes' => $request->notes,
         ]);
         $user->save();
-        $data = [
-            'user' => $user,
-            'title' => "Profile"
-        ];
-        return view('users.index', $data);
+        return redirect()->route('user.index');
     }
 }
