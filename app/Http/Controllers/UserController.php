@@ -62,7 +62,7 @@ class UserController extends Controller
             $url = 'users/avatars/'. $user->id .'/'. $filename;
 
             $image = Image::make($request->file('avatar'))->resize(150, 150)->encode($type);
-            Storage::disk('s3')->put ($url, (string)$image,'public');
+            Storage::disk('s3')->put($url, (string)$image, 'public');
             $user->update([
                 'avatar' => $url,
             ]);
