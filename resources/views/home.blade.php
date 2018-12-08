@@ -42,7 +42,7 @@
                 <th>Category</th>
                 <th>Description</th>
                 <th class="text-center">Cost($)</th>
-                <th class="text-center">Amount</th>
+                <th class="text-center">Quantity</th>
                 <th></th>
             </tr>
             </thead>
@@ -64,10 +64,12 @@
                         <td>{{ nl2br($product->description) }}</td>
                         <td class="text-center">{{ $product->cost }}</td>
                         <input type="hidden" value="{{$product->cost}}" name="product[{{$product->id}}][cost]">
-                        <td class="text-center">{{ $product->quantity-$product->sold }}</td>
-                        <input type="hidden" value= {{ 1 }} name="product[{{$product->id}}][quantity]">
+                        <td class="text-center">{{ $product->quantity-$product->sold == 0? 'Hết hàng' : $product->quantity-$product->sold }}</td>
+                        <input type="hidden" value={{ 1 }} name="product[{{$product->id}}][quantity]">
                         <td class="text-center">
-                            <button class="btn btn-primary" type="submit">Add to cart</button>
+                            <button class="btn btn-primary  {{ ($product->quantity-$product->sold) == 0 ? 'hidden' :'' }}"
+                                    type="submit">Add to cart
+                            </button>
                         </td>
                     </form>
 

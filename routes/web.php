@@ -20,11 +20,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.',
     'middleware' => ['auth', 'admin']], function () {
-        Route::resource('member', 'MemberAdministrationController');
-        Route::get('search-member', 'MemberAdministrationController@search')->name('member.search');
-        Route::resource('product-administration', 'ProductAdministrationController');
-        Route::get('search-product', 'ProductAdministrationController@search')->name('product.search');
-    });
+    Route::resource('member', 'MemberAdministrationController');
+    Route::get('search-member', 'MemberAdministrationController@search')->name('member.search');
+    Route::resource('product-administration', 'ProductAdministrationController');
+    Route::get('search-product', 'ProductAdministrationController@search')->name('product.search');
+    Route::resource('category', 'CategoryAdministrationController');
+
+});
 Route::resource('user', 'UserController')->only('index', 'edit', 'update')->middleware('auth');
 Route::get('add-balance', 'UserController@addBalance')->name('add.balance')->middleware('auth');
 Route::post('add-balance', 'UserController@storeBalance')->name('store.balance')->middleware('auth');
