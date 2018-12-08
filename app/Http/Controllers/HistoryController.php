@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\History;
 use App\Models\HistoryDetail;
+use App\Product;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -78,6 +79,7 @@ class HistoryController extends Controller
                 $data = session()->get('product');
                 foreach ($data as $key => $value) {
                     $historyDetail = new HistoryDetail();
+                    $product = Product::findOrFail($value['id']);
                     $historyDetail->fill([
                         'history_id' => $idHistory,
                         'product_id' => $value['id'],
@@ -85,6 +87,8 @@ class HistoryController extends Controller
                         'name' => $value['name'],
                         'cost' => $value['cost'],
                     ]);
+                    $product->sold += $value['quantity'];
+                    $product->save();
                     $historyDetail->save();
                 }
                 DB::commit();

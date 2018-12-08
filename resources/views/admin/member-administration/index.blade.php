@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Member
+            Members
             <small>Administration</small>
         </h1>
         <ol class="breadcrumb">

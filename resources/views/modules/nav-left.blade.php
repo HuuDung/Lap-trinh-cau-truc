@@ -24,10 +24,15 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{ route('admin.member.index') }}"><i class="fa fa-circle-o"></i>
-                                List Member</a>
+                                Members</a>
                         </li>
+                        <li><a href="{{ route('admin.category.index') }}"><i class="fa fa-circle-o"></i>
+                                Categories</a>
+                        </li>
+                        <li><a href="{{ route('admin.category.create') }}"><i class="fa fa-circle-o"></i>
+                                Create Category</a>
                         <li><a href="{{ route('admin.product-administration.index') }}"><i class="fa fa-circle-o"></i>
-                                List Product</a>
+                                Products</a>
                         </li>
                         <li><a href="{{ route('admin.product-administration.create') }}"><i class="fa fa-circle-o"></i>
                                 Create Product</a>

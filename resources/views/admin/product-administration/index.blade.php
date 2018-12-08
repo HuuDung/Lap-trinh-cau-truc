@@ -7,8 +7,8 @@
             <small>Administration</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Product</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+            <li class="active">Products</li>
         </ol>
     </section>
 
