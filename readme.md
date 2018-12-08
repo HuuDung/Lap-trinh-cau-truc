@@ -6,12 +6,7 @@
 # Structs of programing projects
 Simple ecomerce system by Laravel
 
-### Setup
-```bash
-composer install
-cd docker
-docker-compose up -d
-```
+
 
 ### Member
 Duong Van Ba  - 20150230<br/>
