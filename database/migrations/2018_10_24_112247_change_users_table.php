@@ -22,6 +22,7 @@ class ChangeUsersTable extends Migration
             $table->integer('admin')->default(\App\User::NOT_ADMIN);
             $table->string('location')->nullable();
             $table->string('notes')->nullable();
+            $table->integer('balance')->default(0);
         });
     }
 

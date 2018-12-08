@@ -81,4 +81,19 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('user.index');
     }
+
+    public function addBalance()
+    {
+        $data=[
+            'title'=> 'Balance',
+        ];
+        return view('users.balance', $data);
+    }
+    public function storeBalance(Request $request)
+    {
+        $user = User::findOrFail(Auth::id());
+        $user->balance= $user->balance + $request->balance;
+        $user->save();
+        return redirect()->route('user.index');
+    }
 }

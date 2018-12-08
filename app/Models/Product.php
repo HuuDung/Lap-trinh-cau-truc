@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Cart;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

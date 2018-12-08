@@ -42,6 +42,9 @@
                                 </a>
                             </li>
                             <li class="list-group-item">
+                                <b>Balance</b> <a class="pull-right">{{ Auth::user()->balance }}$</a>
+                            </li>
+                            <li class="list-group-item">
                                 <b>Orders</b> <a class="pull-right">{{ Auth::user()->order }}</a>
                             </li>
                         </ul>

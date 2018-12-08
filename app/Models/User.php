@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Cart;
+use App\Models\History;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -42,6 +44,7 @@ class User extends Authenticatable
         'notes',
         'avatar',
         'admin',
+        'balence',
     ];
     protected $dates = [
         'created_at',
@@ -113,5 +116,9 @@ class User extends Authenticatable
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = Hash::make($password);
+    }
+    public function histories()
+    {
+        return $this->hasMany(History::class);
     }
 }

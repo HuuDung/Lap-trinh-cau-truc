@@ -26,4 +26,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.',
         Route::get('search-product', 'ProductAdministrationController@search')->name('product.search');
     });
 Route::resource('user', 'UserController')->only('index', 'edit', 'update')->middleware('auth');
+Route::get('add-balance', 'UserController@addBalance')->name('add.balance')->middleware('auth');
+Route::post('add-balance', 'UserController@storeBalance')->name('store.balance')->middleware('auth');
+Route::group(['prefix' => 'cart', 'as' => 'cart.', 'middleware' => ['auth']], function () {
+    Route::get('/', 'CartController@index')->name('index');
+    Route::post('/', 'CartController@store')->name('store');
+    Route::put('/', 'CartController@update')->name('update');
+    Route::delete('/', 'CartController@destroy')->name('destroy');
+});
+Route::get('pay/', 'HistoryController@pay')->name('pay')->middleware('auth');
+Route::post('pay/', 'HistoryController@store')->name('pay.store')->middleware('auth');
 Route::get('home/search-product', 'HomeController@search')->name('home.product.search');
