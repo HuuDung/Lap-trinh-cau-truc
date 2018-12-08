@@ -53,7 +53,7 @@
                     <li><a href="{{ route('add.balance') }}"><i class="fa fa-circle-o"></i>
                             Add Balance</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>
+                    <li><a href="{{ route('history.index') }}"><i class="fa fa-circle-o"></i>
                             History</a>
                     </li>
                 </ul>

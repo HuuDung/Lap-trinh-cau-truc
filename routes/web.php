@@ -36,4 +36,5 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.', 'middleware' => ['auth']], fu
 });
 Route::get('pay/', 'HistoryController@pay')->name('pay')->middleware('auth');
 Route::post('pay/', 'HistoryController@store')->name('pay.store')->middleware('auth');
+Route::get('history', 'HistoryController@index')->name('history.index')->middleware('auth');
 Route::get('home/search-product', 'HomeController@search')->name('home.product.search');
