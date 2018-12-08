@@ -13,11 +13,25 @@ cd docker
 docker-compose up -d
 ```
 
-### Demo 
-[Heroku deloy](https://structure-of-programs-project.herokuapp.com)
-
 ### Member
 Duong Van Ba  - 20150230<br/>
 Huu Dung - 20150682<br/>
 Doan Van Son  - 20153185<br/>
+
+### Requirement
+```
+Mysql 5.5+ or Postgres 
+PHP 7.2+ with Composer
+```
+
+### Setup
+```bash
+git clone https://github.com/HuuDung/Lap-trinh-cau-truc.git
+cd Lap-trinh-cau-truc
+// Change config in config/database.php
+composer install
+php artisan migrate db:seed
+php artisan serve
+```
+Then open localhost:8080 on your favorite browser
 
