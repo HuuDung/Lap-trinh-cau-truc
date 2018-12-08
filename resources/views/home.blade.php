@@ -49,18 +49,28 @@
             <body>
             @foreach($products as $product)
                 <tr>
-                    <td>{{ $product->id }}</td>
-                    <td>
-                        <a href="#">{{ $product->name }}</a>
-                    </td>
-                    <td><img src="{{ Storage::url($product->image) }}" alt=""></td>
-                    <td>{{ $product->category->name }}</td>
-                    <td>{{ nl2br($product->description) }}</td>
-                    <td class="text-center">{{ $product->cost }}</td>
-                    <td class="text-center">{{ $product->quantity-$product->sold }}</td>
-                    <td class="text-center">
-                        <button class="btn btn-primary">Add to cart</button>
-                    </td>
+                    <form action="{{ route('cart.store') }}" method="post">
+                        {{ csrf_field() }}
+                        <input name="_method" type="hidden" value="POST">
+                        <td>{{ $product->id }}</td>
+                        <input type="hidden" value="{{$product->id}}" name="product[{{$product->id}}][id]">
+                        <input type="hidden" value="{{$product->id}}" name="id">
+                        <td>
+                            <a href="#">{{ $product->name }}</a>
+                        </td>
+                        <input type="hidden" value="{{$product->name}}" name="product[{{$product->id}}][name]">
+                        <td><img src="{{ Storage::url($product->image) }}" alt=""></td>
+                        <td>{{ $product->category->name }}</td>
+                        <td>{{ nl2br($product->description) }}</td>
+                        <td class="text-center">{{ $product->cost }}</td>
+                        <input type="hidden" value="{{$product->cost}}" name="product[{{$product->id}}][cost]">
+                        <td class="text-center">{{ $product->quantity-$product->sold }}</td>
+                        <input type="hidden" value= {{ 1 }} name="product[{{$product->id}}][quantity]">
+                        <td class="text-center">
+                            <button class="btn btn-primary" type="submit">Add to cart</button>
+                        </td>
+                    </form>
+
                 </tr>
             @endforeach
             </body>

@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Image;
 
 class UserController extends Controller
@@ -18,6 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
+
         $user = User::findOrFail(Auth::id());
         $data = [
             'user' => $user,
@@ -55,12 +57,14 @@ class UserController extends Controller
         //
         $user = User::findOrFail($id);
         if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
-            Image::make($avatar)->resize(150, 150)->save(public_path('/storage/user/' . $user->id . '.' .
-                $avatar->getClientOriginalExtension()));
-            $avatarUrl = 'user/' . $user->id . '.' . $avatar->getClientOriginalExtension();
+            $filename =$request->file('avatar')->getClientOriginalName();
+            $type = $request->file('avatar')->getClientOriginalExtension();
+            $url = 'users/avatars/'. $user->id .'/'. $filename;
+
+            $image = Image::make($request->file('avatar'))->resize(150, 150)->encode($type);
+            Storage::disk('s3')->put($url, (string)$image, 'public');
             $user->update([
-                'avatar' => $avatarUrl,
+                'avatar' => $url,
             ]);
         }
         if ($request->birthday != null) {
@@ -75,10 +79,21 @@ class UserController extends Controller
             'notes' => $request->notes,
         ]);
         $user->save();
-        $data = [
-            'user' => $user,
-            'title' => "Profile"
+        return redirect()->route('user.index');
+    }
+
+    public function addBalance()
+    {
+        $data=[
+            'title'=> 'Balance',
         ];
-        return view('users.index', $data);
+        return view('users.balance', $data);
+    }
+    public function storeBalance(Request $request)
+    {
+        $user = User::findOrFail(Auth::id());
+        $user->balance= $user->balance + $request->balance;
+        $user->save();
+        return redirect()->route('user.index');
     }
 }

@@ -8,6 +8,7 @@ use function foo\func;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Storage;
 use Image;
 
 class ProductAdministrationController extends Controller
@@ -58,12 +59,16 @@ class ProductAdministrationController extends Controller
         $id = Product::withTrashed()->count() + 1;
         $product = new Product();
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            Image::make($image)->resize(150, 150)->save(public_path('/storage/product/' . $id . '.' .
-                $image->getClientOriginalExtension()));
-            $imageUrl = 'product/' . $id . '.' . $image->getClientOriginalExtension();
+            $filename =$request->file('image')->getClientOriginalName();
+            $type = $request->file('image')->getClientOriginalExtension();
+            $url = 'products/images/'. $id .'/'. $filename;
+
+            $image = Image::make($request->file('image'))->resize(150, 150)->encode($type);
+            Storage::disk('s3')->put($url, (string)$image, 'public');
+
+
             $product->fill([
-                'image' => $imageUrl,
+                'image' => $url,
             ]);
         }
         $product->fill([
@@ -125,12 +130,15 @@ class ProductAdministrationController extends Controller
         //
         $product = Product::findOrFail($id);
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            Image::make($image)->resize(150, 150)->save(public_path('/storage/product/' . $id . '.' .
-                $image->getClientOriginalExtension()));
-            $imageUrl = 'product/' . $id . '.' . $image->getClientOriginalExtension();
+            $filename =$request->file('image')->getClientOriginalName();
+            $type = $request->file('image')->getClientOriginalExtension();
+            $url = 'products/images/'. $product->id .'/'. $filename;
+
+            $image = Image::make($request->file('image'))->resize(150, 150)->encode($type);
+            Storage::disk('s3')->put($url, (string)$image, 'public');
+
             $product->update([
-                'image' => $imageUrl,
+                'image' => $url,
             ]);
         }
         $product->update([

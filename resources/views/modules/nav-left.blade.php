@@ -44,11 +44,17 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
+                    <li><a href="{{ route('cart.index') }}"><i class="fa fa-circle-o"></i>
+                            My cart</a>
+                    </li>
                     <li><a href="{{ route('user.index') }}"><i class="fa fa-circle-o"></i>
                             Profile</a>
                     </li>
+                    <li><a href="{{ route('add.balance') }}"><i class="fa fa-circle-o"></i>
+                            Add Balance</a>
+                    </li>
                     <li><a href="#"><i class="fa fa-circle-o"></i>
-                            History Transaction</a>
+                            History</a>
                     </li>
                 </ul>
             </li>
