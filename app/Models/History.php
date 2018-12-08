@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -31,14 +32,6 @@ class History extends Model
         'updated_at',
         'deleted_at',
     ];
-
-    public function getCreatedAtAttribute()
-    {
-        if (!$this->attributes['created_at']) {
-            return null;
-        }
-        return Carbon::parse($this->attributes['created_at'])->format('d-m-Y');
-    }
 
     public function historyDetails()
     {

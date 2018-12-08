@@ -13,6 +13,17 @@ use Nexmo\Client\Exception\Exception;
 class HistoryController extends Controller
 {
     //
+    public function index()
+    {
+        $history = History::where('user_id', Auth::id())->get();
+        $historyDetails = HistoryDetail::all();
+        $data=[
+            'title' => 'History',
+            'histories' => $history,
+            'historyDetails' => $historyDetails,
+        ];
+        return view('users.history', $data);
+    }
     public function pay()
     {
 
