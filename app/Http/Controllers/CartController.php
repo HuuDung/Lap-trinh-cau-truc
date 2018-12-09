@@ -10,17 +10,28 @@ class CartController extends Controller
     //
     public function index()
     {
+        $cart = 0;
+        if(session()->has('product'))
+        {
+            $data = session()->get('product');
+            foreach ($data as $key => $value)
+            {
+                $cart += $value['quantity'];
+            }
+        }
         if (session()->has('product')) {
             $product = session()->get('product');
             $data = [
                 'title' => 'Cart',
                 'products' => $product,
                 'status' => true,
+                'cart' => $cart,
             ];
         } else {
             $data = [
                 'title' => 'Cart',
                 'status' => false,
+                'cart' => $cart,
             ];
         }
         return view('cart', $data);

@@ -16,6 +16,13 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <!-- User Account: style can be found in dropdown.less -->
+                <li>
+                    <a href="{{ route('cart.index') }}">
+                        <i class="fa fa-cart-plus"></i>
+                        <span class="label label-success">{{ $cart }}</span>
+                    </a>
+                </li>
+
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{ Storage::url(auth()->user()->avatar) }}" class="user-image" alt="User Image">

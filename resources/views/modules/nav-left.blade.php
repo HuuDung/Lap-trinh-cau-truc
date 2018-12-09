@@ -49,9 +49,6 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('cart.index') }}"><i class="fa fa-circle-o"></i>
-                            My cart</a>
-                    </li>
                     <li><a href="{{ route('user.index') }}"><i class="fa fa-circle-o"></i>
                             Profile</a>
                     </li>

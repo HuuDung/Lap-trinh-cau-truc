@@ -21,9 +21,17 @@ class UserController extends Controller
     {
 
         $user = User::findOrFail(Auth::id());
+        $cart = 0;
+        if (session()->has('product')) {
+            $data = session()->get('product');
+            foreach ($data as $key => $value) {
+                $cart += $value['quantity'];
+            }
+        }
         $data = [
             'user' => $user,
             'title' => "Profile",
+            'cart' => $cart,
         ];
         return view('users.index', $data);
     }
@@ -38,9 +46,19 @@ class UserController extends Controller
     {
         //
         $user = User::findOrFail($id);
+        $cart = 0;
+        if(session()->has('product'))
+        {
+            $data = session()->get('product');
+            foreach ($data as $key => $value)
+            {
+                $cart += $value['quantity'];
+            }
+        }
         $data = [
             'user' => $user,
             'title' => "Edit Profile",
+            'cart' => $cart,
         ];
         return view('users.edit', $data);
     }
@@ -57,9 +75,9 @@ class UserController extends Controller
         //
         $user = User::findOrFail($id);
         if ($request->hasFile('avatar')) {
-            $filename =$request->file('avatar')->getClientOriginalName();
+            $filename = $request->file('avatar')->getClientOriginalName();
             $type = $request->file('avatar')->getClientOriginalExtension();
-            $url = 'users/avatars/'. $user->id .'/'. $filename;
+            $url = 'users/avatars/' . $user->id . '/' . $filename;
 
             $image = Image::make($request->file('avatar'))->resize(150, 150)->encode($type);
             Storage::disk('s3')->put($url, (string)$image, 'public');
@@ -84,15 +102,26 @@ class UserController extends Controller
 
     public function addBalance()
     {
-        $data=[
-            'title'=> 'Balance',
+        $cart = 0;
+        if(session()->has('product'))
+        {
+            $data = session()->get('product');
+            foreach ($data as $key => $value)
+            {
+                $cart += $value['quantity'];
+            }
+        }
+        $data = [
+            'title' => 'Balance',
+            'cart' =>$cart,
         ];
         return view('users.balance', $data);
     }
+
     public function storeBalance(Request $request)
     {
         $user = User::findOrFail(Auth::id());
-        $user->balance= $user->balance + $request->balance;
+        $user->balance = $user->balance + $request->balance;
         $user->save();
         return redirect()->route('user.index');
     }
