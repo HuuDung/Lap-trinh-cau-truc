@@ -28,10 +28,20 @@ class HomeController extends Controller
     {
         $products = Product::paginate(5);
         $categories = Category::all();
+        $cart = 0;
+        if(session()->has('product'))
+        {
+            $data = session()->get('product');
+            foreach ($data as $key => $value)
+            {
+                $cart += $value['quantity'];
+            }
+        }
         $data = [
             'products' => $products,
             'categories' => $categories,
             'title' => "Home",
+            'cart' => $cart,
         ];
         return view('home', $data);
     }
@@ -39,6 +49,15 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $categories = Category::all();
+        $cart = 0;
+        if(session()->has('product'))
+        {
+            $data = session()->get('product');
+            foreach ($data as $key => $value)
+            {
+                $cart += $value['quantity'];
+            }
+        }
         if ($request->category != null) {
             $products = Product::where('category_id', $request->category)
                 ->where('name', 'like', '%' . $request->content . '%')
@@ -53,6 +72,7 @@ class HomeController extends Controller
                 'status' => false,
                 'title' => "Result",
                 'categories' => $categories,
+                'cart' => $cart,
             ];
         } else {
             $data = [
@@ -60,6 +80,7 @@ class HomeController extends Controller
                 'status' => true,
                 'title' => "Result",
                 'categories' => $categories,
+                'cart' => $cart,
             ];
         }
         return view('home', $data);

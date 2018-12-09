@@ -22,11 +22,19 @@ class ProductAdministrationController extends Controller
     {
         $product = Product::paginate(5);
         $categories = Category::all();
+        $cart = 0;
+        if (session()->has('product')) {
+            $data = session()->get('product');
+            foreach ($data as $key => $value) {
+                $cart += $value['quantity'];
+            }
+        }
         $data = [
 
             'products' => $product,
             'categories' => $categories,
-            'title' => "Product Administration"
+            'title' => "Product Administration",
+            'cart' => $cart,
         ];
         return view('admin.product-administration.index', $data);
     }
@@ -40,9 +48,17 @@ class ProductAdministrationController extends Controller
     {
         //
         $categories = Category::all();
+        $cart = 0;
+        if (session()->has('product')) {
+            $data = session()->get('product');
+            foreach ($data as $key => $value) {
+                $cart += $value['quantity'];
+            }
+        }
         $data = [
             'title' => "Create Product",
             'categories' => $categories,
+            'cart' => $cart,
         ];
         return view('admin.product-administration.create', $data);
     }
@@ -59,9 +75,9 @@ class ProductAdministrationController extends Controller
         $id = Product::withTrashed()->count() + 1;
         $product = new Product();
         if ($request->hasFile('image')) {
-            $filename =$request->file('image')->getClientOriginalName();
+            $filename = $request->file('image')->getClientOriginalName();
             $type = $request->file('image')->getClientOriginalExtension();
-            $url = 'products/images/'. $id .'/'. $filename;
+            $url = 'products/images/' . $id . '/' . $filename;
 
             $image = Image::make($request->file('image'))->resize(150, 150)->encode($type);
             Storage::disk('s3')->put($url, (string)$image, 'public');
@@ -92,9 +108,17 @@ class ProductAdministrationController extends Controller
     {
         //
         $product = Product::findOrFail($id);
+        $cart = 0;
+        if (session()->has('product')) {
+            $data = session()->get('product');
+            foreach ($data as $key => $value) {
+                $cart += $value['quantity'];
+            }
+        }
         $data = [
             'title' => "Show product",
-            'product' => $product
+            'product' => $product,
+            'cart' => $cart,
         ];
         return view('admin.product-administration.show', $data);
     }
@@ -110,10 +134,20 @@ class ProductAdministrationController extends Controller
         //
         $product = Product::findOrFail($id);
         $categories = Category::all();
+        $cart = 0;
+        if(session()->has('product'))
+        {
+            $data = session()->get('product');
+            foreach ($data as $key => $value)
+            {
+                $cart += $value['quantity'];
+            }
+        }
         $data = [
             'product' => $product,
             'categories' => $categories,
             'title' => "Edit Product",
+            'cart' => $cart,
         ];
         return view('admin.product-administration.edit', $data);
     }
@@ -130,9 +164,9 @@ class ProductAdministrationController extends Controller
         //
         $product = Product::findOrFail($id);
         if ($request->hasFile('image')) {
-            $filename =$request->file('image')->getClientOriginalName();
+            $filename = $request->file('image')->getClientOriginalName();
             $type = $request->file('image')->getClientOriginalExtension();
-            $url = 'products/images/'. $product->id .'/'. $filename;
+            $url = 'products/images/' . $product->id . '/' . $filename;
 
             $image = Image::make($request->file('image'))->resize(150, 150)->encode($type);
             Storage::disk('s3')->put($url, (string)$image, 'public');
@@ -169,6 +203,15 @@ class ProductAdministrationController extends Controller
     public function search(Request $request)
     {
         $categories = Category::all();
+        $cart = 0;
+        if(session()->has('product'))
+        {
+            $data = session()->get('product');
+            foreach ($data as $key => $value)
+            {
+                $cart += $value['quantity'];
+            }
+        }
         if ($request->category != null) {
             $products = Product::where('category_id', $request->category)
                 ->where('name', 'like', '%' . $request->content . '%')
@@ -183,6 +226,7 @@ class ProductAdministrationController extends Controller
                 'status' => false,
                 'title' => "Result",
                 'categories' => $categories,
+                'cart' => $cart,
             ];
         } else {
             $data = [

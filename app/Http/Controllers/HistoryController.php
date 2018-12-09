@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Pay;
 use App\Models\History;
 use App\Models\HistoryDetail;
 use App\Product;
@@ -18,21 +19,40 @@ class HistoryController extends Controller
     {
         $history = History::where('user_id', Auth::id())->get();
         $historyDetails = HistoryDetail::all();
+        $cart = 0;
+        if(session()->has('product'))
+        {
+            $data = session()->get('product');
+            foreach ($data as $key => $value)
+            {
+                $cart += $value['quantity'];
+            }
+        }
         $data=[
             'title' => 'History',
             'histories' => $history,
             'historyDetails' => $historyDetails,
+            'cart' => $cart,
         ];
         return view('users.history', $data);
     }
     public function pay()
     {
-
+        $cart = 0;
+        if(session()->has('product'))
+        {
+            $data = session()->get('product');
+            foreach ($data as $key => $value)
+            {
+                $cart += $value['quantity'];
+            }
+        }
         if (session()->has('product')) {
             $product = session()->get('product');
             $data = [
                 'products' => $product,
-                'title' => 'Pay'
+                'title' => 'Pay',
+                'cart'=> $cart,
             ];
             return view('pay', $data);
         } else {
@@ -40,7 +60,7 @@ class HistoryController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(Pay $request)
     {
         $idHistory = History::withTrashed()->count() + 1;
         $user = User::findOrFail(Auth::id());

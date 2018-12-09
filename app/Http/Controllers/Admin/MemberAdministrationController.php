@@ -13,27 +13,57 @@ class MemberAdministrationController extends Controller
     public function index()
     {
         $users = User::paginate(5);
+        $cart = 0;
+        if(session()->has('product'))
+        {
+            $data = session()->get('product');
+            foreach ($data as $key => $value)
+            {
+                $cart += $value['quantity'];
+            }
+        }
         $data = [
             'users' => $users,
             'title' => "Member Administration",
+            'cart' => $cart,
         ];
         return view('admin.member-administration.index', $data);
     }
     public function show($id)
     {
         $user = User::findOrFail($id);
+        $cart = 0;
+        if(session()->has('product'))
+        {
+            $data = session()->get('product');
+            foreach ($data as $key => $value)
+            {
+                $cart += $value['quantity'];
+            }
+        }
         $data=[
             'user' => $user,
             'title' => "Show user",
+            'cart' =>$cart,
         ];
         return view('admin.member-administration.show', $data);
     }
     public function edit($id)
     {
         $user = User::findOrFail($id);
+        $cart = 0;
+        if(session()->has('product'))
+        {
+            $data = session()->get('product');
+            foreach ($data as $key => $value)
+            {
+                $cart += $value['quantity'];
+            }
+        }
         $data=[
             'user' => $user,
             'title' => "Edit user",
+            'cart' => $cart,
         ];
         return view('admin.member-administration.edit', $data);
     }
