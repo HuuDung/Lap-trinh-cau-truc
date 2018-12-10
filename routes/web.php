@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.',
 Route::resource('user', 'UserController')->only('index', 'edit', 'update')->middleware('auth');
 Route::get('add-balance', 'UserController@addBalance')->name('add.balance')->middleware('auth');
 Route::post('add-balance', 'UserController@storeBalance')->name('store.balance')->middleware('auth');
+Route::get('product-detail/{productId}','ProductController@show')->name('product.show');
 Route::group(['prefix' => 'cart', 'as' => 'cart.', 'middleware' => ['auth']], function () {
     Route::get('/', 'CartController@index')->name('index');
     Route::post('/', 'CartController@store')->name('store');

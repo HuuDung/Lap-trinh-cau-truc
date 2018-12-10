@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         $cart=0;
-        $products = Product::paginate(5);
+        $products = Product::paginate(12);
         $categories = Category::all();
         $data = [
             'products' => $products,

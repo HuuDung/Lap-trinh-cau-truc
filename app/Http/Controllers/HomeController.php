@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(5);
+        $products = Product::paginate(12);
         $categories = Category::all();
         $cart = 0;
         if(session()->has('product'))
@@ -61,10 +61,10 @@ class HomeController extends Controller
         if ($request->category != null) {
             $products = Product::where('category_id', $request->category)
                 ->where('name', 'like', '%' . $request->content . '%')
-                ->paginate(5);
+                ->paginate(12);
         } else {
             $products = Product::where('name', 'like', '%' . $request->content . '%')
-                ->paginate(5);
+                ->paginate(12);
         }
         if ($products->count() == 0) {
             $data = [
