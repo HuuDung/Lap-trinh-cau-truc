@@ -70,7 +70,6 @@ class CategoryAdministrationController extends Controller
         ]);
         $category->save();
         return redirect()->route('admin.category.show', $category->id);
-
     }
 
     /**
@@ -109,11 +108,9 @@ class CategoryAdministrationController extends Controller
         //
         $category = Category::findOrFail($id);
         $cart = 0;
-        if(session()->has('product'))
-        {
+        if (session()->has('product')) {
             $data = session()->get('product');
-            foreach ($data as $key => $value)
-            {
+            foreach ($data as $key => $value) {
                 $cart += $value['quantity'];
             }
         }

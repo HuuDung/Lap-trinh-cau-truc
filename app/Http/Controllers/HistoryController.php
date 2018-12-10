@@ -20,11 +20,9 @@ class HistoryController extends Controller
         $history = History::where('user_id', Auth::id())->get();
         $historyDetails = HistoryDetail::all();
         $cart = 0;
-        if(session()->has('product'))
-        {
+        if (session()->has('product')) {
             $data = session()->get('product');
-            foreach ($data as $key => $value)
-            {
+            foreach ($data as $key => $value) {
                 $cart += $value['quantity'];
             }
         }
@@ -39,11 +37,9 @@ class HistoryController extends Controller
     public function pay()
     {
         $cart = 0;
-        if(session()->has('product'))
-        {
+        if (session()->has('product')) {
             $data = session()->get('product');
-            foreach ($data as $key => $value)
-            {
+            foreach ($data as $key => $value) {
                 $cart += $value['quantity'];
             }
         }

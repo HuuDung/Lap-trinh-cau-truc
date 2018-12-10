@@ -14,11 +14,9 @@ class MemberAdministrationController extends Controller
     {
         $users = User::paginate(5);
         $cart = 0;
-        if(session()->has('product'))
-        {
+        if (session()->has('product')) {
             $data = session()->get('product');
-            foreach ($data as $key => $value)
-            {
+            foreach ($data as $key => $value) {
                 $cart += $value['quantity'];
             }
         }
@@ -33,11 +31,9 @@ class MemberAdministrationController extends Controller
     {
         $user = User::findOrFail($id);
         $cart = 0;
-        if(session()->has('product'))
-        {
+        if (session()->has('product')) {
             $data = session()->get('product');
-            foreach ($data as $key => $value)
-            {
+            foreach ($data as $key => $value) {
                 $cart += $value['quantity'];
             }
         }
@@ -52,11 +48,9 @@ class MemberAdministrationController extends Controller
     {
         $user = User::findOrFail($id);
         $cart = 0;
-        if(session()->has('product'))
-        {
+        if (session()->has('product')) {
             $data = session()->get('product');
-            foreach ($data as $key => $value)
-            {
+            foreach ($data as $key => $value) {
                 $cart += $value['quantity'];
             }
         }

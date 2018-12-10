@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+
 class ProductController extends Controller
 {
     //
@@ -21,9 +22,10 @@ class ProductController extends Controller
             'title' => 'Product Detail',
             'cart' => $cart,
         ];
-        if (auth()->id() != null)
+        if (auth()->id() != null) {
             return view('product.show', $data);
-        else
+        } else {
             return view('product.unauth-show', $data);
+        }
     }
 }

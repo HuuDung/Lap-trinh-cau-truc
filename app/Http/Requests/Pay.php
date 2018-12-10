@@ -29,5 +29,4 @@ class Pay extends FormRequest
             'phone' => new DigitOnly(),
         ];
     }
-
 }

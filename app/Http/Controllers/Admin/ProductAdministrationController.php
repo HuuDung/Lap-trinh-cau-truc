@@ -135,11 +135,9 @@ class ProductAdministrationController extends Controller
         $product = Product::findOrFail($id);
         $categories = Category::all();
         $cart = 0;
-        if(session()->has('product'))
-        {
+        if (session()->has('product')) {
             $data = session()->get('product');
-            foreach ($data as $key => $value)
-            {
+            foreach ($data as $key => $value) {
                 $cart += $value['quantity'];
             }
         }
@@ -204,11 +202,9 @@ class ProductAdministrationController extends Controller
     {
         $categories = Category::all();
         $cart = 0;
-        if(session()->has('product'))
-        {
+        if (session()->has('product')) {
             $data = session()->get('product');
-            foreach ($data as $key => $value)
-            {
+            foreach ($data as $key => $value) {
                 $cart += $value['quantity'];
             }
         }
