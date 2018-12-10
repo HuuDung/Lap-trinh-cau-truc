@@ -59,7 +59,7 @@
                             <a href="{{ route('admin.product-administration.show', $product->id) }}">{{ $product->name }}</a>
                         </td>
                         <td><img src="{{ Storage::url($product->image) }}" alt=""></td>
-                        <td>{{ $product->category->name }}</td>
+                        <td>{{ $product->category['name'] }}</td>
                         <td>{{ nl2br($product->description) }}</td>
                         <td class="text-center">{{ $product->cost }}</td>
                         <td class="text-center">{{ $product->quantity }}</td>
