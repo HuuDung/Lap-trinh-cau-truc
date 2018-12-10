@@ -28,7 +28,7 @@
                         </div>
                         <div class="form-group">
                             <label for="category">Category</label>
-                            <input type="text" class="form-control" name="category" value="{{ $product->category->name }}" readonly>
+                            <input type="text" class="form-control" name="category" value="{{ $product->category['name'] }}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="cost">Cost:</label>
