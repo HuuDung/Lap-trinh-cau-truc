@@ -45,7 +45,7 @@
                         </div>
                         <div class="product-content">
                             <p>
-                                Tên sản phẩm: {{ $product->name }}
+                                {{ $product->name }}
                             </p>
                             <p>
                                 Giá tiền: {{ $product->cost }}$
