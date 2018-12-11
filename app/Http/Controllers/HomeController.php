@@ -26,14 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(5);
+        $products = Product::paginate(12);
         $categories = Category::all();
         $cart = 0;
-        if(session()->has('product'))
-        {
+        if (session()->has('product')) {
             $data = session()->get('product');
-            foreach ($data as $key => $value)
-            {
+            foreach ($data as $key => $value) {
                 $cart += $value['quantity'];
             }
         }
@@ -50,21 +48,19 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $cart = 0;
-        if(session()->has('product'))
-        {
+        if (session()->has('product')) {
             $data = session()->get('product');
-            foreach ($data as $key => $value)
-            {
+            foreach ($data as $key => $value) {
                 $cart += $value['quantity'];
             }
         }
         if ($request->category != null) {
             $products = Product::where('category_id', $request->category)
                 ->where('name', 'like', '%' . $request->content . '%')
-                ->paginate(5);
+                ->paginate(12);
         } else {
             $products = Product::where('name', 'like', '%' . $request->content . '%')
-                ->paginate(5);
+                ->paginate(12);
         }
         if ($products->count() == 0) {
             $data = [

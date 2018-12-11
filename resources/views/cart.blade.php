@@ -28,7 +28,7 @@
                 </tr>
                 </thead>
                 <body>
-                @foreach($products as $key =>$value)
+                @foreach($products as $key => $value)
                     @php
                         $amount = $value['quantity'] * $value['cost'];
                         $total = $total + $amount;

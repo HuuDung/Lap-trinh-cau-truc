@@ -47,11 +47,9 @@ class UserController extends Controller
         //
         $user = User::findOrFail($id);
         $cart = 0;
-        if(session()->has('product'))
-        {
+        if (session()->has('product')) {
             $data = session()->get('product');
-            foreach ($data as $key => $value)
-            {
+            foreach ($data as $key => $value) {
                 $cart += $value['quantity'];
             }
         }
@@ -103,11 +101,9 @@ class UserController extends Controller
     public function addBalance()
     {
         $cart = 0;
-        if(session()->has('product'))
-        {
+        if (session()->has('product')) {
             $data = session()->get('product');
-            foreach ($data as $key => $value)
-            {
+            foreach ($data as $key => $value) {
                 $cart += $value['quantity'];
             }
         }

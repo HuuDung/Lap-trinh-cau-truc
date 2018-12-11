@@ -28,8 +28,9 @@ class DigitOnly implements Rule
     {
         //
         for ($i = 0; $i < strlen($value); $i++) {
-            if ($value[$i] < '0' || $value > '9')
+            if ($value[$i] < '0' || $value > '9') {
                 return false;
+            }
         }
         return true;
     }
