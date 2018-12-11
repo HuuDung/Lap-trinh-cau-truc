@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\UploadImageRequest;
 use App\Models\Category;
 use App\Product;
 use function foo\func;
@@ -69,7 +70,7 @@ class ProductAdministrationController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UploadImageRequest $request)
     {
         //
         $id = Product::withTrashed()->count() + 1;
@@ -157,7 +158,7 @@ class ProductAdministrationController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UploadImageRequest $request, $id)
     {
         //
         $product = Product::findOrFail($id);

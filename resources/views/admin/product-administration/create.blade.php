@@ -26,7 +26,12 @@
                             <div class="form-group">
                                 <label for="name">Product's name</label>
                                 <input class="form-control text-left" type="text" name="name"
-                                       placeholder="Name" required>
+                                       placeholder="Name" value="{{ old('name') }}" required>
+                                @if ($errors->has('name'))
+                                    <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ $errors->first('name') }}</strong>
+                        </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="category">Category</label>
@@ -38,11 +43,23 @@
                             </div>
                             <div class="form-group">
                                 <label for="cosr">Cost:</label>
-                                <input type="number" class="form-control text-left" name="cost" required>
+                                <input type="number" class="form-control text-left" name="cost"
+                                       value="{{ old('cost') }}" required>
+                                @if ($errors->has('cost'))
+                                    <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ $errors->first('cost') }}</strong>
+                        </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="quantity">Quantity:</label>
-                                <input type="number" class="form-control text-left" name="quantity" required>
+                                <input type="number" class="form-control text-left" name="quantity"
+                                       value="{{ old('quantity') }}" required>
+                                @if ($errors->has('quantity'))
+                                    <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ $errors->first('quantity') }}</strong>
+                        </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <div>
@@ -50,7 +67,7 @@
                                                 class="fa fa-map-marker margin-r-5"></i>Description:</label>
 
                                 </div>
-                                <textarea name="description" cols="83" rows="10"></textarea>
+                                <textarea name="description" cols="83" rows="10">{{ old('description') }}</textarea>
 
                                 <!-- /.input group -->
                             </div>

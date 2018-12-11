@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\DigitOnly;
+use App\Rules\Value;
 use Illuminate\Foundation\Http\FormRequest;
 
-class Pay extends FormRequest
+class RequestValue extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,8 @@ class Pay extends FormRequest
     {
         return [
             //
-            'phone' => 'numeric',
+            'balance' => new Value(),
+            'product.*.quantity' => new Value(),
         ];
     }
 }

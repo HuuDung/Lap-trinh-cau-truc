@@ -21,11 +21,11 @@
                 <div class="form-group row">
                     <label for="balance" class="col-md-4 col-form-label text-md-right">{{ __('Số tiền') }}</label>
                     <div class="col-md-6">
-                        <input id="balance" type="text"
+                        <input id="balance" type="number"
                                class="form-control{{ $errors->has('balance') ? ' is-invalid' : '' }}"
-                               name="balance" value="{{ old('balance') }}" required autofocus>
+                               name="balance" value="{{ old('balance') }}" required autofocus >
                         @if ($errors->has('balance'))
-                            <span class="invalid-feedback" role="alert">
+                            <span class="invalid-feedback text-danger" role="alert">
                             <strong>{{ $errors->first('balance') }}</strong>
                         </span>
                         @endif
