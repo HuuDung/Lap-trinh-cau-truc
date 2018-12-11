@@ -46,7 +46,7 @@
                         </td>
                         <td class="text-center form-group">
                             <input type="number" id="quantity" name="product[{{$key}}][quantity]"
-                                   value="{{ $value['quantity'] }}">
+                                   value="{{ old('quantity', $value['quantity']) }}">
                         </td>
                         <td class="text-center">
                             <p class="cost">{{ $value['cost'] }} </p>

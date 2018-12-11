@@ -31,8 +31,13 @@
                             <div class="form-group">
                                 <label for="name">Product's name</label>
                                 <input class="form-control text-left" type="text" name="name"
-                                       value="{{ $product->name }}"
+                                       value="{{ old('name', $product->name) }}"
                                        placeholder="Name" required>
+                                @if ($errors->has('name'))
+                                    <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ $errors->first('name') }}</strong>
+                        </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="category">Category</label>
@@ -46,12 +51,23 @@
                             <div class="form-group">
                                 <label for="cost">Cost:</label>
                                 <input type="number" class="form-control text-left" name="cost"
-                                       value="{{ $product->cost }}" required>
+                                       value="{{ old('cost', $product->cost) }}" required>
+                                @if ($errors->has('cost'))
+                                    <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ $errors->first('cost') }}</strong>
+                        </span>
+                                @endif
                             </div>
                             <div class="form-group">
-                                <label for="cost">Quantity:</label>
-                                <input type="number" class="form-control text-left" name="quantity" value="{{ $product->quantity }}"
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" class="form-control text-left" name="quantity"
+                                       value="{{ old('quantity',$product->quantity) }}"
                                        required>
+                                @if ($errors->has('quantity'))
+                                    <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ $errors->first('quantity') }}</strong>
+                        </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <div>
@@ -67,7 +83,8 @@
                             <div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success">Upload</button>
-                                    <a href="{{ route('admin.product-administration.show', $product->id) }}" class="btn btn-primary">Back</a>
+                                    <a href="{{ route('admin.product-administration.show', $product->id) }}"
+                                       class="btn btn-primary">Back</a>
                                 </div>
                             </div>
 

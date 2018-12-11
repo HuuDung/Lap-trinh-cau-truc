@@ -2,10 +2,9 @@
 
 namespace App\Rules;
 
-use function GuzzleHttp\Psr7\str;
 use Illuminate\Contracts\Validation\Rule;
 
-class DigitOnly implements Rule
+class Value implements Rule
 {
     /**
      * Create a new rule instance.
@@ -27,12 +26,11 @@ class DigitOnly implements Rule
     public function passes($attribute, $value)
     {
         //
-        for ($i = 0; $i < strlen($value); $i++) {
-            if ($value[$i] < '0' || $value > '9') {
-                return false;
-            }
+        if ($value < 0) {
+            return false;
+        } else {
+            return true;
         }
-        return true;
     }
 
     /**
@@ -42,6 +40,6 @@ class DigitOnly implements Rule
      */
     public function message()
     {
-        return 'Must only number';
+        return 'Invalid value :attribute';
     }
 }

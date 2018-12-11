@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RequestValue;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,7 @@ class CartController extends Controller
         return view('cart', $data);
     }
 
-    public function store(Request $request)
+    public function store(RequestValue $request)
     {
         $exist = 0;
         $id = $request->id;
@@ -60,7 +61,7 @@ class CartController extends Controller
         return redirect()->route('home');
     }
 
-    public function update(Request $request)
+    public function update(RequestValue $request)
     {
         $id = $request->id;
         $data = session()->get('product');

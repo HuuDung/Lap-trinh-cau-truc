@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RequestValue;
+use App\Http\Requests\UploadImageRequest;
 use App\User;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Image;
 
@@ -68,7 +67,7 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UploadImageRequest $request, $id)
     {
         //
         $user = User::findOrFail($id);
@@ -114,7 +113,7 @@ class UserController extends Controller
         return view('users.balance', $data);
     }
 
-    public function storeBalance(Request $request)
+    public function storeBalance(RequestValue $request)
     {
         $user = User::findOrFail(Auth::id());
         $user->balance = $user->balance + $request->balance;
