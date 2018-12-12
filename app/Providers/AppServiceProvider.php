@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        $cart=0;
+        $cart = 0;
         $products = Product::paginate(12);
         $categories = Category::all();
         $data = [
