@@ -24,7 +24,6 @@ class CreateProductsTable extends Migration
             $table->string('image')->default('products/default.jpg');
             $table->integer('quantity');
             $table->integer('sold')->default(0);
-
             $table->softDeletes();
             $table->timestamps();
         });
