@@ -34,8 +34,7 @@
                                                 class="fa fa-map-marker margin-r-5"></i>Description:</label>
 
                                 </div>
-                                <textarea name="description" cols="83"
-                                          rows="10">{{ nl2br($category->description) }}</textarea>
+                                <textarea name="description" class="form-control rounded-0"rows="10">{{ nl2br($category->description) }}</textarea>
 
                                 <!-- /.input group -->
                             </div>

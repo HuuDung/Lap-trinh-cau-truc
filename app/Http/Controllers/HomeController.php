@@ -54,13 +54,18 @@ class HomeController extends Controller
                 $cart += $value['quantity'];
             }
         }
-        if ($request->category != null) {
-            $products = Product::where('category_id', $request->category)
-                ->where('name', 'like', '%' . $request->content . '%')
-                ->paginate(12);
-        } else {
-            $products = Product::where('name', 'like', '%' . $request->content . '%')
-                ->paginate(12);
+        if($request->content != null || $request->category != null)
+        {
+            if ($request->category != null) {
+                $products = Product::where('category_id', $request->category);
+            }
+            if($request->content != null){
+                $products = Product::where('name', 'like', '%' . $request->content . '%');
+            }
+            $products = $products->paginate(12);
+        }else
+        {
+            $products = Product::paginate(12);
         }
         if ($products->count() == 0) {
             $data = [
