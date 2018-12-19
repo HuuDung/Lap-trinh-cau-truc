@@ -28,7 +28,8 @@
                         </div>
                         <div class="form-group">
                             <label for="category">Category</label>
-                            <input type="text" class="form-control" name="category" value="{{ $product->category['name'] }}" readonly>
+                            <input type="text" class="form-control" name="category"
+                                   value="{{ $product->category['name'] }}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="cost">Cost:</label>
@@ -37,7 +38,8 @@
                         </div>
                         <div class="form-group">
                             <label for="quantity">Quantity:</label>
-                            <input type="number" class="form-control text-left" name="quantity" value="{{ $product->quantity }}"
+                            <input type="number" class="form-control text-left" name="quantity"
+                                   value="{{ $product->quantity }}"
                                    readonly>
                         </div>
                         <div class="form-group">
@@ -46,8 +48,8 @@
                                             class="fa fa-map-marker margin-r-5"></i>Description:</label>
 
                             </div>
-                            <textarea name="description" cols="83" readonly
-                                      rows="10">{{ nl2br($product->description) }}</textarea>
+                            <textarea name="description" readonly class="form-control rounded-0" rows="10"
+                            >{{ nl2br($product->description) }}</textarea>
 
                             <!-- /.input group -->
                         </div>
